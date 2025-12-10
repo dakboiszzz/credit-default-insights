@@ -65,7 +65,22 @@ attributes), if you want to see the number of attributes then you can apply the 
 Now we really need to **check our datatype**, using `dtypes` or `info()`, and here are some datatypes that I encountered:
 - `int64`/ `float64`: These are for numerical attributes, but make sure to clear out `int` and `float`
 
->For instance, in my dataset, the `LIMI_BAL` or the `BILL_AMT` and `PAY_AMT` are all `float65`, understandable because those are amounts of money (in NT dollars). There might be questions over some other categories like `SEX` or `EDUCATION`, those cannot be 
+> For instance, in my dataset, the `LIMI_BAL` or the `BILL_AMT` and `PAY_AMT` are all `float65`, understandable because those are amounts of money (in NT dollars). There might be questions over some other categories like `SEX` or `EDUCATION`, those cannot be integers. But remember that those integers are just representing some convenient ways of encoding data, so it's fine.
+
+- `object`: These things can be anything, and we must be really careful. The most common thing to notice here is when we have 
+some data represent **time**. Those are actually of `datetime` datatype or the **time-series** feature, but oftentimes be misclassified as `object`.
+
+One convenient way to cast our data to its correct type is using the function `astype()` in pandas, or you can use the function `to_datetime()` if you want to specifically convert the data to a `datetime` object.
+> In my example I don't have to worry about those things, but I think in the future when I'm dealing with another dataset, that could be useful.
+
+2. *** Handling Missing Values***
+- Find/count/count the percentage of missing values
+- Handle: 3 ways -> drop, or impute
+
+3. *** Check duplicates ***
+4. *** Detect outliers ***
+5. *** Handling Text/Categorical Attributes ***
+6. *** Feature Scaling/Normalization ***
  
 
 To-do: Check datatype
