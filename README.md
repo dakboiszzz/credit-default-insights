@@ -32,6 +32,7 @@ Second, we need to look at the metrics used when reporting our data. And actuall
 I know you're still getting confused with these metrics. Don't worry too much, mate, we're crawling into the world of finance, and I gotta tell you, finance is really complicated. Now let's take my third tip in the bucket list, which is **telling some stories about the data**. You might imagine yourself as a brilliant detective who is having some clients coming to his house (try!).
 
 Let's look at one of our clients:
+
 Well, my dear Watson, I suggest that this single, 24-year-old,
 graduated woman is having some troubles with the bank, as the `defaul.payment.next.month` is `1.0`. Specifically, she got out of control during the last months. Why is that? Oh well, look at what she spent and what she paid back for the bank during the first three months (`BILL_AMT 6 to 4`, `PAY_AMT 6 to 4`, we gotta trace back in time, check the description). Nothing, right? She wasn't using the credit card at all, she owed nothing and bought nothing. That inactive state gave her a point `-2` in the `PAY_6 to 4`. Now let's look at the recent months, you might notice that things got spiralled out quickly. She had a bill of `689` in July (`BILL_AMT3`), but paid in full in August (`PAY_AMT2`), so she did a good job at that. Then in the later months, she owed a lot of money without paying back (`BILL` > 3000 while `PAY_AMT` equal 0), thus received bad grades from the bank (`PAY` is `2.0`). Eventually, despite her high credit at the first place (`LIMIT_BAL` up to `20000`), she got defaulted by the bank. Case end.
 
@@ -72,15 +73,21 @@ some data represent **time**. Those are actually of `datetime` datatype or the *
 
 One convenient way to cast our data to its correct type is using the function `astype()` in pandas, or you can use the function `to_datetime()` if you want to specifically convert the data to a `datetime` object.
 > In my example I don't have to worry about those things, but I think in the future when I'm dealing with another dataset, that could be useful.
-
-2. *** Handling Missing Values***
+2. ***Check duplicates***
+- Check if there are duplicates -> Always drop
+- Check the column ID (if have) -> Must contain all unique values
+3. ***Handling Missing Values***
 - Find/count/count the percentage of missing values
 - Handle: 3 ways -> drop, or impute
-
-3. *** Check duplicates ***
-4. *** Detect outliers ***
-5. *** Handling Text/Categorical Attributes ***
-6. *** Feature Scaling/Normalization ***
+- Hidden null (undocumented values)
+4. ***Categorical consistency***
+- Cardinality check (Yes/no should have 2 unique values)
+- Label Consistency (one category but 2 different representations) -> Standardize strings (lowercase, strip whitespace)
+5. ***Numerical logic***
+- Negative values 
+- Outliers (Boxplots or Z-score)
+4. ***Detect outliers***
+5. ***Handling Text/Categorical Attributes***
+6. ***Feature Scaling/Normalization***
  
 
-To-do: Check datatype
